@@ -1,0 +1,110 @@
+### GET lista vacía (404)
+GET http://localhost:8080/monument
+
+### POST correcto (201)
+POST http://localhost:8080/monument
+Content-Type: application/json
+
+{
+  "countryCode": "FR",
+  "countryName": "Francia",
+  "city": "París",
+  "latitude": 48.8584,
+  "longitude": 2.2945,
+  "name": "Torre Eiffel",
+  "description": "Torre de hierro construida para la Exposición Universal de 1889.",
+  "photoUrl": "https://example.com/eiffel.jpg"
+}
+
+### POST con countryCode inválido (400)
+POST http://localhost:8080/monument
+Content-Type: application/json
+
+{
+  "countryCode": "fra",
+  "countryName": "Francia",
+  "city": "París",
+  "latitude": 48.8584,
+  "longitude": 2.2945,
+  "name": "Torre Eiffel",
+  "description": "Descripción de prueba.",
+  "photoUrl": "https://example.com/eiffel.jpg"
+}
+
+### POST con name vacío (400)
+POST http://localhost:8080/monument
+Content-Type: application/json
+
+{
+  "countryCode": "ES",
+  "countryName": "España",
+  "city": "Barcelona",
+  "latitude": 41.4036,
+  "longitude": 2.1744,
+  "name": "",
+  "description": "Basílica de Gaudí.",
+  "photoUrl": "https://example.com/sagrada.jpg"
+}
+
+### GET lista con monumentos (200)
+GET http://localhost:8080/monument
+
+### GET por id existente (200)
+GET http://localhost:8080/monument/1
+
+### GET por id inexistente (404)
+GET http://localhost:8080/monument/999
+
+### PUT con datos correctos (200)
+PUT http://localhost:8080/monument/1
+Content-Type: application/json
+
+{
+  "countryCode": "FR",
+  "countryName": "Francia",
+  "city": "París",
+  "latitude": 48.8584,
+  "longitude": 2.2945,
+  "name": "Torre Eiffel (editada)",
+  "description": "Descripción actualizada.",
+  "photoUrl": "https://example.com/eiffel2.jpg"
+}
+
+### PUT con datos inválidos (400)
+PUT http://localhost:8080/monument/1
+Content-Type: application/json
+
+{
+  "countryCode": "",
+  "countryName": "Francia",
+  "city": "París",
+  "latitude": 48.8584,
+  "longitude": 2.2945,
+  "name": "Torre Eiffel",
+  "description": "Descripción de prueba.",
+  "photoUrl": "https://example.com/eiffel.jpg"
+}
+
+### PUT a id inexistente (404)
+PUT http://localhost:8080/monument/999
+Content-Type: application/json
+
+{
+  "countryCode": "FR",
+  "countryName": "Francia",
+  "city": "París",
+  "latitude": 48.8584,
+  "longitude": 2.2945,
+  "name": "Torre Eiffel",
+  "description": "Descripción de prueba.",
+  "photoUrl": "https://example.com/eiffel.jpg"
+}
+
+### DELETE existente (204)
+DELETE http://localhost:8080/monument/1
+
+### DELETE inexistente (204)
+DELETE http://localhost:8080/monument/1
+
+### GET tras borrar (404)
+GET http://localhost:8080/monument/1
